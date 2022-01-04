@@ -5,7 +5,7 @@
 
     <!-- Play rosbag record -->
     <include file="$(find lidar_camera_calibration)/launch/play_rosbag.launch">
-        <arg name="bagfile" value="2016-11-22-14-32-13_test_updated.bag" />
+        <arg name="bagfile" value="/workspace/rosbags/2021-12-28-23-11-12.bag" />
     </include>
 
     <!-- Nodelet manager for this pipeline -->
@@ -29,7 +29,7 @@
         args="load image_proc/rectify lidar_camera_manager --no-bond" >
         
         <!-- Remap input topics -->
-        <remap from="image_mono" to="$(arg camera)/image_color" />
+        <remap from="image_mono" to="$(arg camera)/image_raw" />
         <remap from="camera_info" to="$(arg camera)/camera_info" />
 
         <!-- Remap output topics -->
@@ -42,13 +42,12 @@
         type="static_transform_publisher"
         name="world_velodyne_tf"
         output="screen"
-        <!-- Fill this with estimated transform X Y Z Y P R -->
-        args="0 0 0 0 0 0 world velodyne" />
+        args="0.61639225 0.04541892 -0.25891584 -1.8941336973969443 0.28301333139192014 3.0489886554196937 world PandarXT-32" />
 
     <!-- Setup params for Camera-LiDAR calibration script -->
     <param name="camera_info_topic" type="str" value="$(arg camera)/camera_info" />
     <param name="image_color_topic" type="str" value="$(arg camera)/image_rect_color" />
-    <param name="velodyne_points_topic" type="str" value="/sensors/velodyne_points" />
+    <param name="velodyne_points_topic" type="str" value="/hesai/pandar" />
     <param name="camera_lidar_topic" type="str" value="$(arg camera)/camera_lidar" />
     <param name="project_mode" type="bool" value="true" />
 

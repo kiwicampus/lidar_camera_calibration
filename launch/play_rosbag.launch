@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-    <arg name="bagfile" default="2016-11-22-14-32-13_test_updated.bag" />
+    <arg name="bagfile" default="/workspace/rosbags/2021-12-28-23-11-12.bag" />
 
     <!-- Play rosbag record -->
+    <!-- $(find lidar_camera_calibration)/bagfiles/$(arg bagfile)"  -->
     <node 
         pkg="rosbag"
         type="play"
         name="player"
         output="screen"
-        args="--clock --loop $(find lidar_camera_calibration)/bagfiles/$(arg bagfile)" />
+        args="--clock --loop $(arg bagfile)" />
+
 
 </launch>
